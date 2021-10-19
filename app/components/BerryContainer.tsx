@@ -11,7 +11,7 @@ export default function BerryContainer({berry}: Props) {
                 {/* <Sprite pokemon={pokemon}/> */}
                 <Text style={[styles.text, styles.pokemonName]}>{berry.name}</Text>
                 <Text style={[styles.text, styles.pokemonName]}>Natural gift power: {berry.natural_gift_power}</Text>
-                <Text style={[styles.text, styles.pokemonName]}>Natural gift power: {berry.growth_time}</Text>
+                <Text style={[styles.text, styles.pokemonName]}>Co: {berry.growth_time}</Text>
                 </>
     )
 }

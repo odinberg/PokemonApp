@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import BerryScreen from '../screens/BerryScreen'
 
 export default function BerryPost() {
     return (
         <View>
-            <Text></Text>
+                <BerryScreen berryId={40}/>
         </View>
     )
 }

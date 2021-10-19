@@ -1,40 +1,38 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView, StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, FlatList, Image, ScrollView } from 'react-native'
 import Posts from '../components/Posts'
-import postList from '../../assets/postlist'
 import PokeApi, { Pokemon, PokemonColor } from '../api/PokeApi'
 import useApi from '../hooks/useApi'
+import PokemonScreen from './PokemonScreen'
+import Sprite from '../components/Sprite'
+import ProfilePicture from '../components/ProfilePicture'
+import randomId from '../components/RandomId'
 
 
-type Props = {pokemon: Pokemon}
+type Props = {pokemon: Pokemon, pokemonId: number}
 
 export default function Profile({pokemon}: Props) {
 
-    const {data, request} = useApi<PokemonColor>(PokeApi.getPokemonColor)
+    const {data, request: getPokemonColor} = useApi<PokemonColor>(PokeApi.getPokemonColor)
 
     useEffect(() => {
-        request(pokemon.id)
+        getPokemonColor(pokemon)
     }, [pokemon])
+
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.profile}>
             <View style={styles.profileHeader}/>
             <View style={styles.profilePicture}>
-                <Image source={{
-                    uri: pokemon.sprites.front_shiny,
-                    width: 50,
-                    height: 50,
-                }}/>
-
+                <ProfilePicture pokemon={randomId()}/>
             </View>
             <View style={styles.about}><Text>Jeg er en homofil gutt som elsker å stå på sparkesykkel og suge pikk! Bor på Svinesund og studerer medisin </Text></View>
             <View style={styles.posts}>
-                <FlatList
-                data={postList}
-                keyExtractor={(post) => post.id.toString()}
-                renderItem={({item}) => <Posts />}
+                <ScrollView>
+                <PokemonScreen pokemonId={randomId()}
                 />
+                </ScrollView>
             </View>
             </View>
         </SafeAreaView>
@@ -65,8 +63,6 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderWidth: 2,
-        backgroundColor: "blue",
-        borderRadius: 30,
     },
     about: {
         alignItems: "center",

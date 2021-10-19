@@ -18,9 +18,8 @@ export default function TabNavigator() {
         <Tab.Navigator>
             <Tab.Screen name="FeedNavigtor" component={FeedNavigator}/>
             <Tab.Screen name="Post" component={PostScreen} />
-            {
-            //Må fikse dette
-            /* <Tab.Screen name="Profile" component={Profile}/> */}
+            
+            <Tab.Screen name="Profile" component={Profile}/> 
 
         </Tab.Navigator>
     )

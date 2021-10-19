@@ -30,6 +30,8 @@ export type Berry = {
     name: string;
     growth_time: string;
     natural_gift_power: string;
+    smoothness: string;
+    soil_dryness: string;
 }
 
 const getPokemon = async (pokemon: number | string) => {
@@ -56,7 +58,6 @@ const getPokemon = async (pokemon: number | string) => {
 const getBerry = async (berryId: number) => {
     try {
         const response = await Axios.get<Berry>(`berry/${berryId}`)
-        console.log(response.data)
         return response.data
     } catch (error) {
         throw "Feil ved henting av pokemon: " + error

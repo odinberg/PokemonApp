@@ -1,18 +1,21 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native'
-import Posts, {Post} from '../components/Posts'
-import postList from '../../assets/postlist'
-import Header from '../components/Header'
+import { SafeAreaView, StyleSheet, Text, View, FlatList, ScrollView } from 'react-native'
+import { Pokemon } from '../api/PokeApi'
+import Posts from '../components/Posts'
+import PokemonScreen from './PokemonScreen'
 
-export default function Feed() {
+type Props = {pokemon: Pokemon}
+
+export default function Feed({pokemon}: Props) {
+
+
     return (
      <SafeAreaView>
    
         <View style={styles.posts}>
-                <FlatList
-                data={postList}
-                keyExtractor={(post) => post.id.toString()}
-                renderItem={({item}) => <Posts post={item}/>}/>
+            <ScrollView>
+                <Posts/>
+            </ScrollView>
             </View>
             </SafeAreaView>
     )
