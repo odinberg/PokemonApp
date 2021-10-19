@@ -3,13 +3,13 @@ import { View, Dimensions, Image } from 'react-native'
 import PokeApi, { Pokemon, PokemonColor } from '../api/PokeApi';
 import useApi from '../hooks/useApi';
 
-type Props = {pokemon: Pokemon}
+type Props = {pokemon: Pokemon;}
 
 export default function Sprite({pokemon}: Props) {
-    const {data, request} = useApi<PokemonColor>(PokeApi.getPokemonColor)
+    const {data: pokemonData, request: getPokemonColor} = useApi<Pokemon>(PokeApi.getPokemon)
 
     useEffect(() => {
-        request(pokemon.id)
+        getPokemonColor(pokemon)
     }, [pokemon])
 
 
@@ -18,7 +18,7 @@ export default function Sprite({pokemon}: Props) {
         <View style={{
             width,
             height: width,
-            borderColor: data?.name ?? "red",
+            borderColor: pokemonData?.name ?? "red",
             borderWidth: 2,
             borderRadius: width,
             marginBottom: 8,
